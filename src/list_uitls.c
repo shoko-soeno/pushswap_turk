@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   list_uitls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 00:07:31 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/24 12:22:53 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/25 19:11:47 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstnew(int value)
+t_node	*ft_lstnew(int value)
 {
-	t_list	*new;
+	t_node	*new;
 
-	new = (t_list *)malloc(sizeof(*new));
+	new = (t_node *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
-	new->value = value;
-	new->index = 0;
-	new->initialized = false;
+	new->nbr = value;
+	new->index = 0; //これ変えた方が良い？？
 	new->next = NULL;
 	return (new);
 }
 // -1 means that the index is not set
 
-void	ft_lstadd_front(t_list **stack, t_list *new)
+void	ft_lstadd_front(t_node **stack, t_node *new)
 {
 	new->next = *stack; //nullチェック必要では？
 	*stack = new;
 }
 
-t_list	*ft_lstlast(t_list *stack)
+t_node	*ft_lstlast(t_node *stack)
 {
-	t_list	*tmp;
+	t_node	*tmp;
 
 	tmp = stack;
 	if (!tmp)
@@ -47,27 +46,29 @@ t_list	*ft_lstlast(t_list *stack)
 	return (tmp);
 }
 
-void	ft_lstadd_back(t_list **stack, t_list *new)
+void	ft_lstadd_back(t_node **stack, t_node *new)
 {
-	t_list	*last;
+	t_node	*last;
 
+	if(!stack)
+		return ;
 	if (!*stack)
 	{
 		*stack = new;
-		new->next = NULL;
+		//new->next = NULL; 循環リストになるので不要
 	}
 	else
 	{
 		last = ft_lstlast(*stack);
 		last->next = new;
-		new->next = NULL;
+		//new->next = NULL; 循環リストになるので不要
 	}
 }
 
-size_t	ft_lstsize(t_list *head)
+size_t	ft_lstsize(t_node *head)
 {
 	size_t	i;
-	t_list	*tmp;
+	t_node	*tmp;
 
 	tmp = head;
 	i = 0;

@@ -6,46 +6,45 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 22:37:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 23:10:46 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/25 14:38:35 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free(char **str)
-{
-	int	i;
+// void	ft_free(char **str)
+// {
+// 	int	i;
 
-	i = 0;
-	if (str == NULL) //ここでNULLチェックしているなら、この関数を呼び出す側でNULLチェックしなくてもいいのでは？
-		return ;
-	while (str[i])
-		i++;
-	while (i > 0)
+// 	i = 0;
+// 	if (str == NULL) //ここでNULLチェックしているなら、この関数を呼び出す側でNULLチェックしなくてもいいのでは？
+// 		return ;
+// 	while (str[i])
+// 		i++;
+// 	while (i > 0)
+// 	{
+// 		free(str[--i]);
+// 	}
+// 	free(str);
+// }
+
+bool	is_sorted(t_node *stack)
+{
+	if (stack == NULL)
+		return (false);
+	while (stack->next)
 	{
-		free(str[--i]);
+		if (stack->nbr > stack->next->nbr)
+			return (false);
+		stack = stack->next;
 	}
-	free(str);
+	return (true);
 }
 
-int	is_sorted(t_list **stack)
+void	free_stack(t_node **stack)
 {
-	t_list	*head;
-
-	head = *stack;
-	while (head && head->next)
-	{
-		if (head->value > head->next->value)
-			return (0);
-		head = head->next;
-	}
-	return (1);
-}
-
-void	free_stack(t_list **stack)
-{
-	t_list	*head;
-	t_list	*tmp;
+	t_node	*head;
+	t_node	*tmp;
 
 	head = *stack;
 	while (head)
@@ -57,9 +56,49 @@ void	free_stack(t_list **stack)
 	free(stack);
 }
 
-// void	print_list(t_list *head)
+t_node	*find_min(t_node *stack)
+{
+	long	min;
+	t_node	*min_node;
+
+	if (stack == NULL)
+		return (NULL);
+	min = LONG_MAX;
+	while (stack)
+	{
+		if (stack->nbr < min_node->nbr)
+		{
+			min = stack->nbr; //update min
+			min_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (min_node);
+}
+
+t_node	*find_max(t_node *stack)
+{
+	long	max;
+	t_node	*max_node;
+
+	if (stack == NULL)
+		return (NULL);
+	max = LONG_MIN;
+	while (stack)
+	{
+		if (stack->nbr > max)
+		{
+			max = stack->nbr;
+			max_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (max_node);
+}
+
+// void	print_node(t_node *head)
 // {
-// 	t_list	*tmp;
+// 	t_node	*tmp;
 // 	tmp = head;
 // 	while (tmp != NULL)
 // 	{

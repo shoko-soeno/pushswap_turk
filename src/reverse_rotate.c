@@ -6,57 +6,57 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:15:43 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 15:19:56 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:24:39 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	reverse_rotate(t_list **stack)
+static int	reverse_rotate(t_node **stack)
 {
-	t_list	*head;
-	t_list	*tail;
+	t_node	*head;
+	t_node	*last;
 
-	if (ft_lstsize(*stack) < 2)
+	if (*stack == NULL || (*stack)->next == NULL)
 		return (-1);
 	head = *stack;
-	tail = ft_lstlast(head);
+	last = ft_lstlast(head);
 	while (head)
 	{
-		if (head->next->next == NULL)
+		if (head->next->next == NULL) //最後から2番目の要素を見つける
 		{
-			head->next = NULL;
+			head->next = NULL; //listの終わりを更新
 			break ;
 		}
 		head = head->next;
 	}
-	tail->next = *stack;
-	*stack = tail;
+	last->next = *stack;//lastを先頭にする
+	*stack = last;//listの先頭ポインタを更新
 	return (0);
 }
 
-int	rra(t_list **stack_a)
+void	rra(t_node **stack_a, bool print)
 {
 	if (reverse_rotate(stack_a) == -1)
-		return (-1);
-	ft_putendl_fd("rra", 1);
-	return (0);
+		return ;
+	if(!print)
+		ft_putendl_fd("rra", 1);
 }
 
-int	rrb(t_list **stack_b)
+void	rrb(t_list **stack_b, bool print)
 {
 	if (reverse_rotate(stack_b) == -1)
-		return (-1);
-	ft_putendl_fd("rrb", 1);
-	return (0);
+		return ;
+	if(!print)
+		ft_putendl_fd("rrb", 1);
 }
 
-int	rrr(t_list **stack_a, t_list **stack_b)
+void	rrr(t_list **stack_a, t_list **stack_b, bool print)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
-		return (-1);
+		return ;
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	ft_putendl_fd("rrr", 1);
-	return (0);
+	if(!print)
+		ft_putendl_fd("rrr", 1);
 }

@@ -6,42 +6,26 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 23:37:41 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:00:32 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//lstaddという関数を作成し、(*stack_a)->next->next->next->next->indexという書き方をしないで済むようにすべき
+//lst_atという関数を作成し、(*stack_a)->next->next->next->next->indexという書き方をしないで済むようにすべき
 //sort_four, fiveは、最小値が上下どちらに近いかを判定してから、近い方に動かすと手数が減らせるはず。
 
-static void	sort_three(t_list **stack_a)
+void	sort_three(t_node **stack)
 {
-	size_t	first;
-	size_t	second;
-	size_t	third;
-
-	if (!*stack_a || !(*stack_a)->next || !(*stack_a)->next->next)
-		return ;
-	first = (*stack_a)->index;
-	second = (*stack_a)->next->index;
-	third = (*stack_a)->next->next->index;
-	if (first > second && second < third && first < third)
-		sa(stack_a);
-	else if (first > second && second > third && first > third)
-	{
-		sa(stack_a);
-		rra(stack_a);
-	}
-	else if (first > second && second < third && first > third)
-		ra(stack_a);
-	else if (first < second && second > third && first < third)
-	{
-		sa(stack_a);
-		ra(stack_a);
-	}
-	else if (first < second && second > third && first > third)
-		rra(stack_a);
+	t_node *max_node;
+	
+	max_node = find_max(*stack);
+	if (max_node == *stack)
+		ra(stack, false);
+	else if (max_node == (*stack)->next)
+		rra(stack, false);
+	if ((*stack)->nbr > (*stack)->next->nbr)
+		sa(stack, false);
 }
 
 static void	sort_four(t_list **stack_a, t_list **stack_b)

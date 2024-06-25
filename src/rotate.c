@@ -6,16 +6,16 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:35 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 15:15:56 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/25 15:49:30 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rotate(t_list **stack)
+static int	rotate(t_node **stack)
 {
-	t_list	*head;
-	t_list	*last;
+	t_node	*head;
+	t_node	*last;
 
 	if (ft_lstsize(*stack) < 2)
 		return (-1);
@@ -27,28 +27,28 @@ int	rotate(t_list **stack)
 	return (0);
 }
 
-int	ra(t_list **stack_a)
+void	ra(t_node **stack_a, bool print)
 {
 	if (rotate(stack_a) == -1)
 		return (-1);
-	ft_putendl_fd("ra", 1);
+	if (!print)
+		ft_putendl_fd("ra", 1);
 	return (0);
 }
 
-int	rb(t_list **stack_b)
+void	rb(t_node **stack_b, bool print)
 {
 	if (rotate(stack_b) == -1)
 		return (-1);
-	ft_putendl_fd("rb", 1);
+	if(!print)
+		ft_putendl_fd("rb", 1);
 	return (0);
 }
 
-int	rr(t_list **stack_a, t_list **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b, bool print)
 {
-	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
-		return (-1);
 	rotate(stack_a);
 	rotate(stack_b);
-	ft_putendl_fd("rr", 1);
-	return (0);
+	if(!print)
+		ft_putendl_fd("rr", 1);
 }
