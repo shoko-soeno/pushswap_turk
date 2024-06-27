@@ -6,27 +6,27 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 22:37:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/25 14:38:35 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/27 22:28:43 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	ft_free(char **str)
-// {
-// 	int	i;
+void	ft_free(char **str)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (str == NULL) //ここでNULLチェックしているなら、この関数を呼び出す側でNULLチェックしなくてもいいのでは？
-// 		return ;
-// 	while (str[i])
-// 		i++;
-// 	while (i > 0)
-// 	{
-// 		free(str[--i]);
-// 	}
-// 	free(str);
-// }
+	i = 0;
+	if (str == NULL) //ここでNULLチェックしているなら、この関数を呼び出す側でNULLチェックしなくてもいい
+		return ;
+	while (str[i])
+		i++;
+	while (i > 0)
+	{
+		free(str[--i]);
+	}
+	free(str);
+}
 
 bool	is_sorted(t_node *stack)
 {
