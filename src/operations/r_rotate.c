@@ -6,11 +6,11 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:15:43 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 15:13:04 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 19:48:28 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 static int	r_rotate(t_node **stack)
 {

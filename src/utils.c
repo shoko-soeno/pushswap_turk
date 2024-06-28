@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 22:37:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 15:04:25 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 01:02:14 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,54 +56,14 @@ void	free_stack(t_node **stack)
 	free(stack);
 }
 
-t_node	*find_min(t_node *stack)
+void	print_node(t_node *head) //debug
 {
-	long	min;
-	t_node	*min_node;
-
-	if (stack == NULL)
-		return (NULL);
-	min = LONG_MAX;
-	while (stack)
+	t_node	*tmp;
+	tmp = head;
+	while (tmp != NULL)
 	{
-		if (stack->nbr < min_node->nbr)
-		{
-			min = stack->nbr; //update min
-			min_node = stack;
-		}
-		stack = stack->next;
+		ft_putnbr_fd(tmp->nbr, 1);
+		ft_putendl_fd("", 1);
+		tmp = tmp->next;
 	}
-	return (min_node);
 }
-
-t_node	*find_max(t_node *stack)
-{
-	long	max;
-	t_node	*max_node;
-
-	if (stack == NULL)
-		return (NULL);
-	max = LONG_MIN;
-	while (stack)
-	{
-		if (stack->nbr > max)
-		{
-			max = stack->nbr;
-			max_node = stack;
-		}
-		stack = stack->next;
-	}
-	return (max_node);
-}
-
-// void	print_node(t_node *head)
-// {
-// 	t_node	*tmp;
-// 	tmp = head;
-// 	while (tmp != NULL)
-// 	{
-// 		ft_putnbr_fd(tmp->value, 1);
-// 		ft_putendl_fd("", 1);
-// 		tmp = tmp->next;
-// 	}
-// }

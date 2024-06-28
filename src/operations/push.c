@@ -6,11 +6,11 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 07:43:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 14:48:32 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 19:48:25 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 static int	push(t_node **stack_to, t_node **stack_from)
 {

@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 21:20:45 by ssoeno            #+#    #+#              #
-#    Updated: 2024/06/28 15:08:10 by ssoeno           ###   ########.fr        #
+#    Updated: 2024/06/28 23:57:07 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CHECK = checker
 
 CC = cc
 # CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address -O3 -MMD -MP -Iincludes
-CFLAGS = -Wall -Werror -Wextra -MMD -MP -Iincludes
+CFLAGS = -Wall -Werror -Wextra -Iincludes
 
 LIBFT = ./libft
-SRCS =  $(wildcard src/*.c src/operations/*.c) 
+SRCS =  $(wildcard src/*.c src/operations/*.c src/algorithm/*.c) 
 # wildcard は使用禁止！
 # option + click でコマンドの好きな場所を選択できる
 # ARG=`jot -r 10 1 100 | tr '\n' ' '`; ./push_swap $ARG
@@ -31,7 +31,7 @@ OBJS = $(SRCS:.c=.o)
 # all: $(NAME) $(CHECK)
 all: $(NAME)
 
--include $(OBJS:.o=.d)
+# -include $(OBJS:.o=.d)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT)

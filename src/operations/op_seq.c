@@ -6,11 +6,11 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:19:30 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 14:28:07 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 19:48:18 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../includes/push_swap.h"
 
 t_op_seq	*op_seq_init()
 {
