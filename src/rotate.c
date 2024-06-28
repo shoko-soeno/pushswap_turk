@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:35 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/25 15:49:30 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 15:14:30 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,26 @@ static int	rotate(t_node **stack)
 	return (0);
 }
 
-void	ra(t_node **stack_a, bool print)
+void	ra(t_node **stack_a, t_op_seq *op, bool print)
 {
 	if (rotate(stack_a) == -1)
-		return (-1);
+		return ;
 	if (!print)
-		ft_putendl_fd("ra", 1);
-	return (0);
+		op_seq_add(op, "ra");
 }
 
-void	rb(t_node **stack_b, bool print)
+void	rb(t_node **stack_b, t_op_seq *op, bool print)
 {
 	if (rotate(stack_b) == -1)
-		return (-1);
+		return ;
 	if(!print)
-		ft_putendl_fd("rb", 1);
-	return (0);
+		op_seq_add(op, "rb");
 }
 
-void	rr(t_node **stack_a, t_node **stack_b, bool print)
+void	rr(t_node **stack_a, t_node **stack_b, t_op_seq *op, bool print)
 {
 	rotate(stack_a);
 	rotate(stack_b);
 	if(!print)
-		ft_putendl_fd("rr", 1);
+		op_seq_add(op, "rr");
 }

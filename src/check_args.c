@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 23:18:46 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/24 20:09:12 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:12:50 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,29 @@ bool	ft_isnum(char *num)
 	return (true);
 }
 
-int	ft_check_args(int argc, char **argv)
+bool	ft_check_args(int argc, char **argv)
 {
 	int		i;
 	long	tmp;
 	char	**args;
 
 	i = 0;
-	while (argv[++i])
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
+		args = argv + 1;
+	while (args[++i])
 	{
-		tmp = ft_atol(argv[i]);
-		if (!ft_isnum(argv[i]) || ft_duplicate(tmp, argv, i)
+		tmp = ft_atol(args[i]);
+		if (!ft_isnum(args[i]) || ft_duplicate(tmp, args, i)
 			|| tmp < INT_MIN || tmp > INT_MAX)
 		{
+			if (argc == 2)
+				ft_free(args);
 			return (false);
 		}
 	}
+	if (argc == 2)
+		ft_free(args);
 	return (true);
 }

@@ -6,15 +6,15 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 07:43:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 15:22:15 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:48:32 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	push(t_list **stack_to, t_list **stack_from)
+static int	push(t_node **stack_to, t_node **stack_from)
 {
-	t_list	*head_from;
+	t_node	*head_from;
 
 	if (ft_lstsize(*stack_from) < 1)
 		return (0);
@@ -34,18 +34,18 @@ int	push(t_list **stack_to, t_list **stack_from)
 	return (0);
 }
 
-int	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_node **a, t_node **b, t_op_seq *op, bool print)
 {
-	if (push(stack_a, stack_b) == -1)
-		return (-1);
-	ft_putendl_fd("pa", 1);
-	return (0);
+	if (push(a, b) == -1)
+		return ;
+	if (!print)
+		op_seq_add(op, "pa");
 }
 
-int	pb(t_list **stack_a, t_list **stack_b)
+void	pb(t_node **b, t_node **a, t_op_seq *op, bool print)
 {
-	if (push(stack_b, stack_a) == -1)
-		return (-1);
-	ft_putendl_fd("pb", 1);
-	return (0);
+	if (push(b, a) == -1)
+		return ;
+	if (!print)
+		op_seq_add(op, "pb");
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   r_rotate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:15:43 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/25 15:24:39 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 15:13:04 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	reverse_rotate(t_node **stack)
+static int	r_rotate(t_node **stack)
 {
 	t_node	*head;
 	t_node	*last;
@@ -35,28 +35,28 @@ static int	reverse_rotate(t_node **stack)
 	return (0);
 }
 
-void	rra(t_node **stack_a, bool print)
+void	rra(t_node **stack_a, t_op_seq *op, bool print)
 {
-	if (reverse_rotate(stack_a) == -1)
+	if (r_rotate(stack_a) == -1)
 		return ;
 	if(!print)
-		ft_putendl_fd("rra", 1);
+		op_seq_add(op, "rra");
 }
 
-void	rrb(t_list **stack_b, bool print)
+void	rrb(t_node **stack_b, t_op_seq *op, bool print)
 {
-	if (reverse_rotate(stack_b) == -1)
+	if (r_rotate(stack_b) == -1)
 		return ;
 	if(!print)
-		ft_putendl_fd("rrb", 1);
+		op_seq_add(op, "rrb");
 }
 
-void	rrr(t_list **stack_a, t_list **stack_b, bool print)
+void	rrr(t_node **stack_a, t_node **stack_b, t_op_seq *op, bool print)
 {
 	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return ;
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
+	r_rotate(stack_a);
+	r_rotate(stack_b);
 	if(!print)
-		ft_putendl_fd("rrr", 1);
+		op_seq_add(op, "rrr");
 }

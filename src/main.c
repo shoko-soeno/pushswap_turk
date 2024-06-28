@@ -6,15 +6,15 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:32 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/27 22:28:10 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 15:06:10 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	init_stack(t_list **stack, int argc, char **argv)
+static void	init_stack(t_node **stack, int argc, char **argv)
 {
-	t_list	*new;
+	t_node	*new;
 	char	**values;
 	size_t	i;
 
@@ -37,52 +37,51 @@ static void	init_stack(t_list **stack, int argc, char **argv)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	index_compression(stack);
 	if (argc == 2)
 		ft_free(values);
 }
 
-static void	sort_stack(t_list **stack_a, t_list **stack_b)
+static void	sort_stack(t_node **stack_a, t_node **stack_b, t_op_seq *op)
 {
 	size_t	lstsize;
 
 	lstsize = ft_lstsize(*stack_a);
 	if (lstsize <= 5)
-		sort_small(stack_a, stack_b, lstsize);
-	else
-		radix_sort(stack_a, stack_b, lstsize);
+		sort_small(stack_a, stack_b, lstsize, op);
+	// else
+	// 	radix_sort(stack_a, stack_b, lstsize);
 }
 
-// #include <libc.h>
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q push_swap");
-// }
 int	main(int argc, char *argv[])
 {
-	t_list	**stack_a;
-	t_list	**stack_b;
+	t_node		**stack_a;
+	t_node		**stack_b;
+	t_op_seq	*op;
 
 	if (argc < 2)
 		return (1);
-	if (!ft_check_args(argc, argv)) // "+5"はinvalid, "-"だけもvalidになってしまっているので、修正が必要
+	if (!ft_check_args(argc, argv))
+	{ // "+5"はinvalid, "-"だけもvalidになってしまっているので、修正が必要
 		ft_putstr_fd("Error\n", 2);
 		return (1);
-	stack_a = (t_list **)malloc(sizeof(t_list *)); //なぜかここがsizeof(t_list）になってた
-	stack_b = (t_list **)malloc(sizeof(t_list *));
-	op = op_seq_init();
+	}
+	stack_a = (t_node **)malloc(sizeof(t_node *)); //なぜかここがsizeof(t_node）になってた
+	stack_b = (t_node **)malloc(sizeof(t_node *));
 	if (!stack_a || !stack_b)
 		return (free(stack_a), free(stack_b), 1); //mallocの失敗はチェックしないとnull参照してしまう！
 	*stack_a = NULL;
 	*stack_b = NULL;
 	init_stack(stack_a, argc, argv);
-	if (is_sorted(stack_a))
+	op = op_seq_init();
+	if (is_sorted(*stack_a))
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
 		return (0);
 	}
-	sort_stack(stack_a, stack_b);
+	sort_stack(stack_a, stack_b, op);
+	for (int i = 0; i < op->size; i++)
+		printf("%s\n", op->arr[i]); //あとでprintfを別の関数に置換する
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

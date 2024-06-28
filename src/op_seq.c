@@ -6,19 +6,20 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 20:19:30 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/27 20:47:01 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:28:07 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op_seq.h"
+#include "push_swap.h"
 
 t_op_seq	*op_seq_init()
 {
 	t_op_seq	*op; 
 
 	op = (t_op_seq *)malloc(sizeof(t_op_seq));
-    if (!op)
-        return (NULL);
+	if (!op)
+		return (NULL);
+
 	op->size = 0;
 	return (op);
 }

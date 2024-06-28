@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:00:36 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/23 18:53:21 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/28 14:20:29 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct s_list
-{
-	int				value;
-	bool			initialized;
-	size_t			index;
-	size_t			index_base3;
-	size_t			mask;
-	struct s_list	*next;
-}			t_list;
+// typedef struct s_list
+// {
+// 	int				value;
+// 	bool			initialized;
+// 	size_t			index;
+// 	size_t			index_base3;
+// 	size_t			mask;
+// 	struct s_list	*next;
+// }			t_list;
 
 //part1
 int		ft_isalpha(int c);
@@ -73,13 +73,13 @@ void	ft_putnbr_fd(int n, int fd);
 
 //bonus
 // t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-size_t	ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+// void	ft_lstadd_front(t_list **lst, t_list *new);
+// size_t	ft_lstsize(t_list *lst);
+// t_list	*ft_lstlast(t_list *lst);
+// void	ft_lstadd_back(t_list **lst, t_list *new);
+// void	ft_lstdelone(t_list *lst, void (*del)(void *));
+// void	ft_lstclear(t_list **lst, void (*del)(void *));
+// void	ft_lstiter(t_list *lst, void (*f)(void *));
+// t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 21:20:45 by ssoeno            #+#    #+#              #
-#    Updated: 2024/06/23 23:08:30 by ssoeno           ###   ########.fr        #
+#    Updated: 2024/06/28 15:08:10 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -MMD -MP -Iincludes
 
 LIBFT = ./libft
-SRCS =  $(wildcard src/*.c utils/*.c) 
+SRCS =  $(wildcard src/*.c src/operations/*.c) 
 # wildcard は使用禁止！
 # option + click でコマンドの好きな場所を選択できる
 # ARG=`jot -r 10 1 100 | tr '\n' ' '`; ./push_swap $ARG
