@@ -6,7 +6,7 @@
 #    By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 21:20:45 by ssoeno            #+#    #+#              #
-#    Updated: 2024/06/28 23:57:07 by ssoeno           ###   ########.fr        #
+#    Updated: 2024/06/29 05:47:56 by ssoeno           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -Iincludes
 
 LIBFT = ./libft
+CHECKER	= checker
 SRCS =  $(wildcard src/*.c src/operations/*.c src/algorithm/*.c) 
 # wildcard は使用禁止！
 # option + click でコマンドの好きな場所を選択できる
@@ -25,11 +26,15 @@ SRCS =  $(wildcard src/*.c src/operations/*.c src/algorithm/*.c)
 # CHECK_SRCS = $(wildcard utils/*.c) src/operations.c checker.c
 
 OBJS = $(SRCS:.c=.o)
-# CHECK_OBJS = $(CHECK_SRCS:.c=.o)
+CHECKER_OBJ	=  $(CHECKER_SRC:%.c=src/checker/%.o)
 # DEPS=$(SRCS:.c=.d)
 
-# all: $(NAME) $(CHECK)
 all: $(NAME)
+
+# bonus:$(CHECKER)
+
+obj:
+	mkdir -p obj
 
 # -include $(OBJS:.o=.d)
 
@@ -44,13 +49,13 @@ $(NAME): $(OBJS)
 clean:
 	make -C ./libft fclean
 	@$(RM) $(OBJS)
-	# @$(RM) $(CHECK_OBJS)
+	@$(RM) $(CHECK_OBJS)
 	@$(RM) $(OBJS) $(OBJS:.o=.d)
+	$(RM) -r obj
 
 fclean: clean
 	make -C $(LIBFT) fclean
 	$(RM) $(NAME)
-	# $(RM) $(CHECK)
 
 re: fclean all
 

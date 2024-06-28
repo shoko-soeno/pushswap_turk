@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:59:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 04:11:02 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:49:52 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void	calculate_cost(t_node *a, t_node *b)
 1. 最初にindexをデフォルトのコストとして設定
 2. ノードaが中央より上にあるならcost = index、下にあるならreverse rotateを使うのでcost = size_a - index
 3. bのtarget_nodeが中央より上にあるならcost += target_node->index、下にあるならcost += size_b - target_node->index
+正確に計算するには、3でra + rbならrrにするなどの処理が必要
 */
 
 void	set_cheapest_flag(t_node *stack)
@@ -119,7 +120,6 @@ void	set_cheapest_flag(t_node *stack)
 
 void	setup_a(t_node *a, t_node *b)
 {
-	printf("Setting up stack a:\n"); // デバッグ
 	assign_indices(a);
 	assign_indices(b);
 	find_target_for_a(a, b);
