@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 19:59:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 02:06:06 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:11:02 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 void	assign_indices(t_node *stack)
 {
 	int	current_index;
-	int	centor_index;
+	int	center_index;
 
 	current_index = 0;
 	if (!stack)
 		return ;
-	centor_index = ft_lstsize(stack) / 2;
+	center_index = ft_lstsize(stack) / 2;
+	printf("Assigning indices:\n");
+	printf("Center index: %d \n", center_index); // デバッグ
 	while (stack)
 	{
 		stack->index = current_index;
-		if (current_index <= centor_index)
+		if (current_index <= center_index)
 			stack->is_above_center = true;
 		else
 			stack->is_above_center = false;
 		stack = stack->next;
-		++current_index;
+		current_index++;
 	}
 }
 
@@ -46,10 +48,9 @@ static void	find_target_for_a(t_node *a, t_node *b)
 		current_b = b;
 		while(current_b)
 		{
-			if (current_b->nbr < a->nbr
-				&& current_b->nbr > best_match_value)
+			if (current_b->nbr < a->nbr && current_b->nbr > best_match_value)
 			{
-				best_match_value = current_b->nbr;
+				best_match_value = current_b->nbr; //the closest smaller value so far
 				target = current_b;
 			}
 			current_b = current_b->next;
@@ -58,6 +59,7 @@ static void	find_target_for_a(t_node *a, t_node *b)
 			a->target = find_max_node(b);
 		else
 			a->target = target;
+		printf("Node value: %d, Target value: %d\n", a->nbr, a->target->nbr); // デバッグ
 		a = a->next;
 	}
 }
@@ -69,18 +71,18 @@ static void	calculate_cost(t_node *a, t_node *b)
 
 	size_a = ft_lstsize(a);
 	size_b = ft_lstsize(b);
-	printf("inside calculate_cost size_a: %d\n", size_a); //debug
-	printf("inside calculate_cost size_b: %d\n", size_b); //debug
+	printf("Calculating costs:\n");
+	printf("Size of stack a: %d, Size of stack b: %d\n", size_a, size_b); // デバッグ
 	while (a)
 	{
-		if (a->is_above_center)
-			a->cost = a->index;
-		else if (!(a->is_above_center))
+		a->cost = a->index;
+		if (!(a->is_above_center))
 			a->cost = size_a - a->index;
 		if (a->target->is_above_center)
 			a->cost += a->target->index;
-		else if (!(a->target->is_above_center))
+		else
 			a->cost += size_b - a->target->index;
+		printf("Node value: %d, Cost: %d above center %d \n", a->nbr, a->cost, a->is_above_center); // デバッグ
 		a = a->next;
 	}
 }
@@ -98,6 +100,7 @@ void	set_cheapest_flag(t_node *stack)
 	if(!stack)
 		return;
 	cheapest_cost = INT_MAX;
+	cheapest_node = NULL;
 	while (stack)
 	{
 		if (stack->cost < cheapest_cost)
@@ -107,11 +110,16 @@ void	set_cheapest_flag(t_node *stack)
 		}
 		stack = stack->next;
 	}
-	cheapest_node->is_cheapest = true;
+	if (cheapest_node)
+	{
+		cheapest_node->is_cheapest = true;
+		printf("Cheapest node value: %d, Cost: %d\n", cheapest_node->nbr, cheapest_node->cost); // デバッグ
+	}
 }
 
 void	setup_a(t_node *a, t_node *b)
 {
+	printf("Setting up stack a:\n"); // デバッグ
 	assign_indices(a);
 	assign_indices(b);
 	find_target_for_a(a, b);

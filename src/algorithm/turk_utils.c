@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:36:20 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 01:07:32 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 03:00:37 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,6 @@ void	prep_for_push(t_node **stack, t_node *node, char name, t_op_seq *op)
 				rrb(stack, op, false);
 		}	
 	}
+	// printf("PREP FOR PUSH DONE\n"); //debug
+	// print_node(*stack); //debug
 }

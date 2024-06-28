@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:32 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 01:37:38 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:11:26 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ static void	init_stack_a_from_args(t_node **stack, int argc, char **argv)
 	}
 	else
 	{
-		i = 1;
-		values = argv;
+		values = argv + 1;
 	}
 	while (values[i])
 	{
 		new = ft_lstnew(ft_atoi(values[i]));
+		if (!new)
+		{
+			ft_free(values); //確認
+			return ;
+		}
 		ft_lstadd_back(stack, new);
 		i++;
 	}
@@ -82,6 +86,7 @@ int	main(int argc, char *argv[])
 	}
 	sort_stack(stack_a, stack_b, op);
 	print_node(*stack_a); //debug
+	printf("MAIN RESULT OPS\n");
 	for (int i = 0; i < op->size; i++)
 		printf("%s\n", op->arr[i]); //あとでprintfを別の関数に置換する
 	free_stack(stack_a);

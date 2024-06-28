@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:41 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 00:47:49 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:26:58 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	sort_small(t_node **stack_a, int size, t_op_seq *op)
 	if (size == 1 || is_sorted(*stack_a))
 		return ;
 	if (size == 2)
-		sa(stack_a, op, 1);
+		sa(stack_a, op, false);
 	else if (size == 3)
 		sort_three(stack_a, op);
 	// else if (size == 4)

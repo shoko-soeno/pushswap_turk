@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:50:15 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 01:36:20 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:27:20 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	turk_sort(t_node **a, t_node **b, t_op_seq *op)
 
 	size_a = ft_lstsize(*a);
 	if (size_a-- > 3 && !is_sorted(*a)) //この関数を呼び出す前にis_sortedやsizeはチェック済みなので、この条件は不要かも？
-		pb(b, a, op, true);
+		pb(b, a, op, false);
 	if (size_a-- > 3 && !is_sorted(*a))
-		pb(b, a, op, true);
+		pb(b, a, op, false);
 	while (size_a-- > 3 && !is_sorted(*a))
 	{
 		setup_a(*a, *b);

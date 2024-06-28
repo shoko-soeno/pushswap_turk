@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 00:07:31 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 23:48:18 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:42:44 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ t_node	*ft_lstnew(int value)
 	if (!new)
 		return (NULL);
 	new->nbr = value;
-	//new->index = 0;
 	new->next = NULL;
 	return (new);
 }
-// -1 means that the index is not set
 
 void	ft_lstadd_front(t_node **stack, t_node *new)
 {
@@ -55,13 +53,13 @@ void	ft_lstadd_back(t_node **stack, t_node *new)
 	if (!*stack)
 	{
 		*stack = new;
-		new->next = NULL; //循環リストなら不要？
+		new->next = NULL;
 	}
 	else
 	{
 		last = ft_lstlast(*stack);
 		last->next = new;
-		new->next = NULL; //循環リストなら不要？
+		new->next = NULL;
 	}
 }
 

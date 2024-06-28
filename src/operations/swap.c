@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:35 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 19:48:36 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 04:29:42 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@ int	swap(t_node **stack)
 	t_node	*head;
 	t_node	*next;
 	int		tmp_nbr;
-	size_t	tmp_index;
 
 	if (!stack || !*stack || !(*stack)->next)
 		return (-1);
 	head = *stack;
 	next = head->next;
 	tmp_nbr = head->nbr;
-	tmp_index = head->index;
 	head->nbr = next->nbr;
-	head->index = next->index;
 	next->nbr = tmp_nbr;
-	next->index = tmp_index;
 	return (0);
 }
 

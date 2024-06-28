@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 07:43:34 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 19:48:25 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 02:40:41 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@ static int	push(t_node **stack_to, t_node **stack_from)
 	t_node	*head_from;
 
 	if (ft_lstsize(*stack_from) < 1)
-		return (0);
+		return (-1);
 	if (!*stack_from)
-		return (0);
+		return (-1);
 	head_from = *stack_from;
 	*stack_from = head_from->next;
 	if (!stack_to)
-	{
 		head_from->next = NULL;
-	}
 	else
-	{
 		head_from->next = *stack_to;
-	}
 	*stack_to = head_from;
 	return (0);
 }
