@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 22:37:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 17:11:03 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 23:10:10 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ bool	is_sorted(t_node *stack)
 	return (true);
 }
 
-void	free_stack(t_node **stack)
+void	free_stack(t_node **stack) //ダブルポインタから普通のポインタにしてしまえば、関数内での変更が外にも反映される
 {
 	t_node	*head;
 	t_node	*tmp;
 
 	if (!stack || !*stack)
+		free(stack);　//ここが漏れていたせいでリークした！
 		return ;
 	head = *stack;
 	while (head)

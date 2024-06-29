@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:32 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 17:22:27 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 23:04:54 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	output_operations(t_op_seq *op)
 
 int	main(int argc, char *argv[])
 {
-	t_node		**stack_a;
+	t_node		**stack_a; //そもそもダブルポインタにする必要がない！
 	t_node		**stack_b;
 	t_op_seq	*op;
 
