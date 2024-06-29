@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 00:07:31 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 02:42:44 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 16:10:49 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ t_node	*ft_lstnew(int value)
 
 void	ft_lstadd_front(t_node **stack, t_node *new)
 {
-	new->next = *stack; //nullチェック必要？
+	if (!stack || !new)
+		return ;
+	new->next = *stack;
 	*stack = new;
 }
 
@@ -48,7 +50,7 @@ void	ft_lstadd_back(t_node **stack, t_node *new)
 {
 	t_node	*last;
 
-	if(!stack)
+	if (!stack)
 		return ;
 	if (!*stack)
 	{

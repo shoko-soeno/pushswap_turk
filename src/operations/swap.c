@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:35 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 04:29:42 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 16:40:48 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,26 @@ int	swap(t_node **stack)
 
 void	sa(t_node **stack_a, t_op_seq *op, bool print)
 {
-	if (swap(stack_a) != 0)
+	if (swap(stack_a) == -1)
 		return ;
-	if(!print)
+	if (!print)
 		op_seq_add(op, "sa");
 }
 
 void	sb(t_node **stack_b, t_op_seq *op, bool print)
 {
-	if (!swap(stack_b))
+	if (swap(stack_b) == -1)
 		return ;
-	if(!print)
+	if (!print)
 		op_seq_add(op, "sb");
 }
 
 void	ss(t_node **stack_a, t_node **stack_b, t_op_seq *op, bool print)
 {
-	if (!swap(stack_a) || !swap(stack_b))
+	if (swap(stack_a) == -1 || swap(stack_b) == -1)
 		return ;
 	swap(stack_a);
 	swap(stack_b);
-	if(!print)
+	if (!print)
 		op_seq_add(op, "ss");
 }

@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 20:25:35 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/28 22:58:22 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 16:40:56 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	rotate(t_node **stack)
 	t_node	*head;
 	t_node	*last;
 
+	if (!stack || !*stack)
+		return (-1);
 	if (ft_lstsize(*stack) < 2)
 		return (-1);
 	head = *stack;
@@ -39,7 +41,7 @@ void	rb(t_node **stack_b, t_op_seq *op, bool print)
 {
 	if (rotate(stack_b) == -1)
 		return ;
-	if(!print)
+	if (!print)
 		op_seq_add(op, "rb");
 }
 
@@ -47,6 +49,6 @@ void	rr(t_node **stack_a, t_node **stack_b, t_op_seq *op, bool print)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	if(!print)
+	if (!print)
 		op_seq_add(op, "rr");
 }

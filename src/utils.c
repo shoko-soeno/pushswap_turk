@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 22:37:50 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 02:44:17 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 17:11:03 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free(char **str)
 	int	i;
 
 	i = 0;
-	if (str == NULL) //ここでNULLチェックしているなら、この関数を呼び出す側でのNULLチェック不要か
+	if (str == NULL)
 		return ;
 	while (str[i])
 		i++;
@@ -46,6 +46,8 @@ void	free_stack(t_node **stack)
 	t_node	*head;
 	t_node	*tmp;
 
+	if (!stack || !*stack)
+		return ;
 	head = *stack;
 	while (head)
 	{
@@ -56,9 +58,10 @@ void	free_stack(t_node **stack)
 	free(stack);
 }
 
-void	print_node(t_node *head) //debug用
+void	print_node(t_node *head)
 {
 	t_node	*tmp;
+
 	tmp = head;
 	while (tmp != NULL)
 	{

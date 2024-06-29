@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:15:21 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 04:37:57 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 17:06:41 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	find_target_for_b(t_node *a, t_node *b)
 {
 	t_node	*current_a;
-	t_node  *target;
-	long    best_match_value;
+	t_node	*target;
+	long	best_match_value;
 
-	while(b)
+	while (b)
 	{
 		best_match_value = INT_MAX;
 		current_a = a;
-		while(current_a)
+		while (current_a)
 		{
 			if (current_a->nbr > b->nbr && current_a->nbr < best_match_value)
-            {
+			{
 				best_match_value = current_a->nbr;
 				target = current_a;
 			}

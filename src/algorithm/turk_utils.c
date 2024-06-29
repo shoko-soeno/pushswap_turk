@@ -6,7 +6,7 @@
 /*   By: ssoeno <ssoeno@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:36:20 by ssoeno            #+#    #+#             */
-/*   Updated: 2024/06/29 03:00:37 by ssoeno           ###   ########.fr       */
+/*   Updated: 2024/06/29 17:13:36 by ssoeno           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*find_min_node(t_node *stack)
 	{
 		if (stack->nbr < min_node->nbr)
 		{
-			min = stack->nbr; //update min
+			min = stack->nbr;
 			min_node = stack;
 		}
 		stack = stack->next;
@@ -66,18 +66,18 @@ t_node	*find_cheapest_node(t_node *stack)
 	return (NULL);
 }
 
-void	prep_for_push(t_node **stack, t_node *node, char name, t_op_seq *op) 
+void	prep_for_push(t_node **stack, t_node *node, char name, t_op_seq *op)
 {
-	while (*stack != node) //Check if the required node is not already the first node
+	while (*stack != node)
 	{
-		if (name == 'a') //If not, and it is stack `a`, execute the following
+		if (name == 'a')
 		{
 			if (node->is_above_center)
 				ra(stack, op, false);
 			else
 				rra(stack, op, false);
 		}
-		else if (name == 'b') //If not, and it is stack `b`, execute the following
+		else if (name == 'b')
 		{
 			if (node->is_above_center)
 				rb(stack, op, false);
@@ -85,6 +85,18 @@ void	prep_for_push(t_node **stack, t_node *node, char name, t_op_seq *op)
 				rrb(stack, op, false);
 		}	
 	}
-	// printf("PREP FOR PUSH DONE\n"); //debug
-	// print_node(*stack); //debug
+}
+
+void	min_on_top(t_node **a, t_op_seq *op)
+{
+	t_node	*min_node;
+
+	min_node = find_min_node(*a);
+	while ((*a)->nbr != min_node->nbr)
+	{
+		if (min_node->is_above_center)
+			ra(a, op, false);
+		else
+			rra(a, op, false);
+	}
 }
